@@ -1,4 +1,4 @@
-package com.kelvsricafort101.wordpress.androidcat.screens
+package com.kelvsricafort101.wordpress.androidcat.ml
 
 import android.content.Context
 import android.net.Uri
