@@ -17,8 +17,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kelvsricafort101.wordpress.androidcat.R
+import com.kelvsricafort101.wordpress.androidcat.navigation.NavigationDestination
 import com.kelvsricafort101.wordpress.androidcat.ui.AndroidCatTopAppBar
 import com.kelvsricafort101.wordpress.androidcat.ui.theme.AndroidCatTheme
+
+object SettingsDestination: NavigationDestination {
+    override val route = "settings"
+    override val titleRes = R.string.nav_settings
+}
 
 @Composable
 fun SettingsScreen(
@@ -31,7 +37,7 @@ fun SettingsScreen(
         modifier = modifier,
         topBar = {
             AndroidCatTopAppBar(
-                title = stringResource(R.string.nav_settings),
+                title = stringResource(SettingsDestination.titleRes),
                 canNavigateBack = true,
                 navigateUp = onNavigateUp
             )

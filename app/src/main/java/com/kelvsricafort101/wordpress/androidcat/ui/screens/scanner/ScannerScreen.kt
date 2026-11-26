@@ -21,6 +21,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.rounded.CameraAlt
 import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.Info
@@ -33,8 +34,11 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -55,16 +59,25 @@ import coil.compose.AsyncImage
 import com.kelvsricafort101.wordpress.androidcat.R
 import com.kelvsricafort101.wordpress.androidcat.data.CatAnalysisResult
 import com.kelvsricafort101.wordpress.androidcat.data.DetectedLabel
+import com.kelvsricafort101.wordpress.androidcat.navigation.NavigationDestination
+import com.kelvsricafort101.wordpress.androidcat.ui.AndroidCatTopAppBar
 import com.kelvsricafort101.wordpress.androidcat.ui.screens.settings.ScannerUiState
 import com.kelvsricafort101.wordpress.androidcat.ui.theme.AndroidCatTheme
 import java.io.File
 
+object ScannerDestination: NavigationDestination {
+    override val route = "scanner"
+    override val titleRes = R.string.nav_scanner
+}
+
 @Composable
 fun ScannerScreen(
+    openDrawer: () -> Unit,
     uiState: ScannerUiState,
     onImageSelected: (Uri) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val context = LocalContext.current
     var tempCameraUri by remember { mutableStateOf<Uri?>(null) }
 
@@ -84,21 +97,41 @@ fun ScannerScreen(
             onImageSelected(captured)
         }
     }
-
-    ScannerScreenContent(
-        uiState = uiState,
-        onPickFromGallery = {
-            photoPickerLauncher.launch(
-                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+    Scaffold(
+        modifier = modifier.fillMaxSize(),
+        topBar = {
+            AndroidCatTopAppBar(
+                title = stringResource(ScannerDestination.titleRes),
+                canNavigateBack = false,
+                scrollBehavior = scrollBehavior,
+                navigationIcon = {
+                    IconButton(
+                        onClick = openDrawer
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Menu,
+                            contentDescription = stringResource(R.string.open_drawer)
+                        )
+                    }
+                }
             )
-        },
-        onCapturePhoto = {
-            val uri = createTempImageUri(context)
-            tempCameraUri = uri
-            cameraLauncher.launch(uri)
-        },
-        modifier = modifier
-    )
+        }
+    ) { innerPadding ->
+        ScannerScreenContent(
+            uiState = uiState,
+            onPickFromGallery = {
+                photoPickerLauncher.launch(
+                    PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                )
+            },
+            onCapturePhoto = {
+                val uri = createTempImageUri(context)
+                tempCameraUri = uri
+                cameraLauncher.launch(uri)
+            },
+            modifier = modifier.padding(innerPadding)
+        )
+    }
 }
 
 @Composable
@@ -341,6 +374,7 @@ private fun createTempImageUri(context: Context) : Uri {
 private fun ScannerScreenPreview() {
     AndroidCatTheme(darkTheme = false) {
         ScannerScreenContent(
+
             uiState = ScannerUiState.Success(
                 imageUri = Uri.EMPTY,
                 result = CatAnalysisResult(
