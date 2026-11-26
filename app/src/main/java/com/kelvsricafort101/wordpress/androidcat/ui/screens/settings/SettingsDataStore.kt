@@ -1,4 +1,4 @@
-package com.kelvsricafort101.wordpress.androidcat.screens
+package com.kelvsricafort101.wordpress.androidcat.ui.screens.settings
 
 import android.content.Context
 import androidx.datastore.preferences.core.booleanPreferencesKey

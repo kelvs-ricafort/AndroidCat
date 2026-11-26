@@ -1,4 +1,4 @@
-package com.kelvsricafort101.wordpress.androidcat.screens.scanner
+package com.kelvsricafort101.wordpress.androidcat.ui.screens.scanner
 
 import android.content.Context
 import android.net.Uri
@@ -55,7 +55,7 @@ import coil.compose.AsyncImage
 import com.kelvsricafort101.wordpress.androidcat.R
 import com.kelvsricafort101.wordpress.androidcat.data.CatAnalysisResult
 import com.kelvsricafort101.wordpress.androidcat.data.DetectedLabel
-import com.kelvsricafort101.wordpress.androidcat.screens.ScannerUiState
+import com.kelvsricafort101.wordpress.androidcat.ui.screens.settings.ScannerUiState
 import com.kelvsricafort101.wordpress.androidcat.ui.theme.AndroidCatTheme
 import java.io.File
 
