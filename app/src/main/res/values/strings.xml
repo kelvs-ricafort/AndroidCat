@@ -34,10 +34,15 @@
 
     <!-- About Screen -->
     <string name="about_description">Android Cat ML uses Google ML Kit on-device Image Labeling to identify cats, breeds, and surrounding objects offline in real time.</string>
+    <string name="app_info">App Info</string>
+    <string name="app_features">Features</string>
     <string name="version">Version: %1$s</string>
     <string name="build">Build: %1$d</string>
-    <string name="about_engine_label">ML Engine</string>
-    <string name="about_engine_value">ML Kit Image Labeling (On-Device)</string>
+    <string name="feature_cat_detection">On-device cat detection with confidence score</string>
+    <string name="feature_mlkit_labels">ML Kit scene and object labeling</string>
+    <string name="feature_gallery_and_camera">Photo picker and camera capture support</string>
+    <string name="feature_dark_mode">Persistent Dark Mode theme toggle</string>
+    <string name="feature_customizable_settings">Customizable app settings</string>
 
     <!-- Developer Info -->
     <string name="developer_info">Developer info</string>

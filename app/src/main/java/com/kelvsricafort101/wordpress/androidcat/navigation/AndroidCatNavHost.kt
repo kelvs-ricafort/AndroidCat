@@ -8,6 +8,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.kelvsricafort101.wordpress.androidcat.ui.screens.about.AboutScreen
+import com.kelvsricafort101.wordpress.androidcat.ui.screens.about.AboutScreenDestination
 import com.kelvsricafort101.wordpress.androidcat.ui.screens.scanner.ScannerDestination
 import com.kelvsricafort101.wordpress.androidcat.ui.screens.scanner.ScannerScreen
 import com.kelvsricafort101.wordpress.androidcat.ui.screens.settings.ScannerUiState
@@ -54,6 +56,14 @@ fun AndroidCatNavHost(
                     uiState = scannerUiState,
                     onImageSelected = onImageSelected,
                     modifier = modifier
+                )
+            }
+            // About Screen
+            composable(route = AboutScreenDestination.route) {
+                AboutScreen(
+                    onNavigateUp = {
+                        navController.navigateUp()
+                    }
                 )
             }
             // Settings Screen

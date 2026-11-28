@@ -37,6 +37,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -373,23 +374,24 @@ private fun createTempImageUri(context: Context) : Uri {
 @Composable
 private fun ScannerScreenPreview() {
     AndroidCatTheme(darkTheme = false) {
-        ScannerScreenContent(
-
-            uiState = ScannerUiState.Success(
-                imageUri = Uri.EMPTY,
-                result = CatAnalysisResult(
-                    isCatDetected = true,
-                    catConfidencePercent = 96,
-                    labels = listOf(
-                        DetectedLabel("Cat", 96),
-                        DetectedLabel("Whiskers", 88),
-                        DetectedLabel("Pet", 84)
+        Surface {
+            ScannerScreenContent(
+                uiState = ScannerUiState.Success(
+                    imageUri = Uri.EMPTY,
+                    result = CatAnalysisResult(
+                        isCatDetected = true,
+                        catConfidencePercent = 96,
+                        labels = listOf(
+                            DetectedLabel("Cat", 96),
+                            DetectedLabel("Whiskers", 88),
+                            DetectedLabel("Pet", 84)
+                        )
                     )
-                )
-            ),
-            onPickFromGallery = {},
-            onCapturePhoto = {}
-        )
+                ),
+                onPickFromGallery = {},
+                onCapturePhoto = {}
+            )
+        }
     }
 }
 
@@ -397,21 +399,23 @@ private fun ScannerScreenPreview() {
 @Composable
 private fun ScannerScreenDarkPreview() {
     AndroidCatTheme(darkTheme = true) {
-        ScannerScreenContent(
-            uiState = ScannerUiState.Success(
-                imageUri = Uri.EMPTY,
-                result = CatAnalysisResult(
-                    isCatDetected = true,
-                    catConfidencePercent = 96,
-                    labels = listOf(
-                        DetectedLabel("Cat", 96),
-                        DetectedLabel("Whiskers", 88),
-                        DetectedLabel("Pet", 84)
+        Surface {
+            ScannerScreenContent(
+                uiState = ScannerUiState.Success(
+                    imageUri = Uri.EMPTY,
+                    result = CatAnalysisResult(
+                        isCatDetected = true,
+                        catConfidencePercent = 96,
+                        labels = listOf(
+                            DetectedLabel("Cat", 96),
+                            DetectedLabel("Whiskers", 88),
+                            DetectedLabel("Pet", 84)
+                        )
                     )
-                )
-            ),
-            onPickFromGallery = {},
-            onCapturePhoto = {}
-        )
+                ),
+                onPickFromGallery = {},
+                onCapturePhoto = {}
+            )
+        }
     }
 }

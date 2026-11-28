@@ -2,6 +2,7 @@ package com.kelvsricafort101.wordpress.androidcat.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Scanner
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.DrawerValue
@@ -18,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kelvsricafort101.wordpress.androidcat.R
+import com.kelvsricafort101.wordpress.androidcat.ui.screens.about.AboutScreenDestination
 import com.kelvsricafort101.wordpress.androidcat.ui.screens.scanner.ScannerDestination
 import com.kelvsricafort101.wordpress.androidcat.ui.screens.settings.SettingsDestination
 import kotlinx.coroutines.launch
@@ -63,6 +65,27 @@ fun AndroidCatNavigationDrawer(
                         Icon(
                             imageVector = Icons.Default.Scanner,
                             contentDescription = stringResource(R.string.nav_scanner)
+                        )
+                    }
+                )
+
+                NavigationDrawerItem(
+                    label = {
+                        Text(
+                            text = stringResource(R.string.nav_about)
+                        )
+                    },
+                    selected = selectedRoute == AboutScreenDestination.route,
+                    onClick = {
+                        scope.launch {
+                            drawerState.close()
+                        }
+                        onNavigate(AboutScreenDestination.route)
+                    },
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Default.Info,
+                            contentDescription = stringResource(R.string.nav_about)
                         )
                     }
                 )
